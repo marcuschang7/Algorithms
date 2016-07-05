@@ -64,8 +64,8 @@ namespace Algorithms.Controllers
             }
             return candidate != 1;
         }
+        #region Selection Algorithm
         // Below is a simple c# code for selection algorithm.
-
         // array of integers to hold values
 
         private static int[] a = new int[4] { 2, 8, 0, 3 };
@@ -111,5 +111,6 @@ namespace Algorithms.Controllers
             }
 
         }
+        #endregion
     }
 }
