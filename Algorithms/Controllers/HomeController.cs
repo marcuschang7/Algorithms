@@ -64,5 +64,52 @@ namespace Algorithms.Controllers
             }
             return candidate != 1;
         }
+        // Below is a simple c# code for selection algorithm.
+
+        // array of integers to hold values
+
+        private static int[] a = new int[4] { 2, 8, 0, 3 };
+
+        static void Main(string[] args)
+        {
+
+            Sort();
+
+            foreach (int temp in a)
+            {
+
+                Console.WriteLine(temp);
+
+            }
+
+            Console.ReadLine();
+
+        }
+
+        public static void Sort()
+        {
+
+            int i, j;
+            int min, temp;
+
+            for (i = 0; i < a.Count() - 1; i++) // Loop through each element
+            //for (i = 0; i < a.Count() – 1; i++) // Loop through each element
+            {
+                min = i; // Assume that he is the smallest
+
+                for (j = i + 1; j < a.Count(); j++) // Loop through the remaining element
+                {
+                    if (a[j] < a[min]) // If the current value smaller than the min
+                    {
+                        min = j; // Swap the values
+                    }
+                }
+                temp = a[i]; // Store the current value in temp variable
+                a[i] = a[min]; // Swap the minimum  value to the current position
+                a[min] = temp; // Swap the current value to the minimum value position
+
+            }
+
+        }
     }
 }
