@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Algorithms.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,14 +9,36 @@ namespace Algorithms.Controllers
 {
     public class HomeController : Controller
     {
+        public ActionResult _CalculatePrime(CalcPrimeModel Canidate)
+        {
+
+
+            ModelState.Remove("Answer");
+            Canidate.Answer = primeNumberTest1(Canidate.Numb2Calc);
+            return View(Canidate);
+        }
+        //public ActionResult _CalculatePrime()
+        //{
+        //    return View();
+        //}
         public ActionResult Index()
         {
+            var FinonacciSequence = new List<FinonacciSequenceModel>();
             for (int i = 0; i < 15; i++)
             {
-                Console.WriteLine(Fibonacci(i));
+               // Console.WriteLine(Fibonacci(i));
+               // FinonacciSequence.fib .Add(new FinonacciSequenceModel(FinonacciSequence= Fibonacci(i).ToString()));
+                var Obj = new FinonacciSequenceModel();
+                Obj.SequenceNumber = Fibonacci(i).ToString();
+                FinonacciSequence.Add(Obj);
             }
-            return View();
+            return View(FinonacciSequence.ToList());
         }
+        //The Fibonacci Numbers is a sequence of numbers in the following order: 0, 1, 1, 2, 3, 5, 8, 13,
+        //21, 34... The next number is found by adding up the two numbers before it. 
+        //The formula for calculating these numbers is
+        //F(n) = F(n-1) + F(n-2)
+        #region Calculate Fibonacci
         public static int Fibonacci(int n)
         {
             int a = 0;
@@ -29,6 +52,8 @@ namespace Algorithms.Controllers
             }
             return a;
         }
+        #endregion
+        #region Calculate Prime
         private static bool primeNumberTest1(int i)
         {
             return i > 3 ? ((Enumerable.Range(2, (i / 2) + 1).Where(x => (i % x == 0))).Count() > 0 ? false : true) : i == 2 || i == 3 ? true : false;
@@ -60,6 +85,7 @@ namespace Algorithms.Controllers
             }
             return candidate != 1;
         }
+        #endregion
         #region Selection Algorithm
         // Below is a simple c# code for selection algorithm.
         // array of integers to hold values
@@ -96,5 +122,6 @@ namespace Algorithms.Controllers
             }
         }
         #endregion
+
     }
 }
